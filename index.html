@@ -34,7 +34,51 @@ button{
 <h2 id="rSucceed">Успешно: 0</h2>
 <h2 id="rFailed">Отклонены сервером: 0</h2>
 <br>
-<script type="text/javascript" src="/online_t.js"></script><script type="text/javascript">sc_online_t(1389152,"Users Online","#ffffff");</script>
+<script>
+function sc_online_t(id, label, fcolor) {
+    var info;
+    var d = document;
+    var ref =  "" + d.referrer;
+    var url =  "" + window.location;
+    ref = ref.substring(0, 600);
+    url = url.substring(0, 300);
+
+    if (encodeURIComponent) {
+        info = '&ua=' + encodeURIComponent(navigator.userAgent);
+        info = info + '&url=' + encodeURIComponent(url);
+        info = info + '&ref=' + encodeURIComponent(ref);
+    } else {
+        info = '&ua=' + escape(navigator.userAgent);
+        info = info + '&url=' + escape(url);
+        info = info + '&ref=' + escape(ref);
+    }
+
+    info = info + '&sw=' + screen.width;
+    info = info + '&sh=' + screen.height;
+    info = info + '&rand=' + Math.round(100 * Math.random());
+    info = info + '&label=' + label;
+    info = info + '&fcolor=' + fcolor;
+
+    var ga = document.createElement('script');
+    ga.type = 'text/javascript';
+    ga.async = true;
+    ga.src = "http://www.supercounters.com/fc.php?id=" + id + "&w=1&v=1" + info; (d.getElementsByTagName("head")[0] || d.getElementsByTagName("body")[0]).appendChild(ga);
+
+}
+
+function sc_onlinetext(id, out) {
+    ct_insert(a, "supercounters.com/online_t.js");
+}
+
+function ct_insert(c, d) {
+    var a = document.getElementsByTagName("script");
+    for (var b = 0; b < a.length; b++) {
+        if (a[b].src.indexOf(d) > 0) {
+            a[b].parentNode.insertBefore(c, a[b].nextSibling)
+        }
+    }
+}	
+</script><script type="text/javascript">sc_online_t(1389152,"Users Online","#ffffff");</script>
 </div>
 </center>
 <script>
