@@ -26,7 +26,7 @@ button{
 <body>
 <center>
 <div style="margin: 0;position: absolute;top: 50%;left: 50%;margin-right: -50%;transform: translate(-50%, -50%);">
-<h1 id="target"></h1>
+<h1 id="target">Текущая цель: static.live.ru</h1>
 <br><br>
 <button id="start">Start</button>
 <br><br>
@@ -39,7 +39,7 @@ button{
 </center>
 <script>
 var isRunning  = false;
-target = 'https://life.ru/';
+target = 'https://static.life.ru/posts/2017/03/989643/gr/north/4e27eac6a867c4b23f0bd4485ef98e05__1440x.jpg';
 startBtn = document.getElementById("start");
 targetElement = document.getElementById("target");
 rSent = document.getElementById("rSent");
@@ -49,7 +49,7 @@ sent = 0;
 succeed = 0;
 failed = 0;
 var Interval;
-targetElement.innerHTML = "Текущая цель: " + target;
+//targetElement.innerHTML = "Текущая цель: " + target;
 function randomT(){
     var text = '';
     var p = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
